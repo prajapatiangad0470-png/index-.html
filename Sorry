@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I am Sorry</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #ff758c;
+            background-image: linear-gradient(315deg, #ff758c 0%, #ff7eb3 74%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            width: 100%;
+            max-width: 380px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .emoji {
+            font-size: 60px;
+            margin-bottom: 15px;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        h2 {
+            color: #ff3366;
+            font-size: 24px;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #ffccd5;
+            border-radius: 12px;
+            font-size: 16px;
+            outline: none;
+            margin-bottom: 20px;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus {
+            border-color: #ff3366;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            background-color: #ff3366;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(255, 51, 102, 0.3);
+            transition: background 0.3s, transform 0.1s;
+        }
+        button:active {
+            transform: scale(0.98);
+        }
+        .message-box {
+            display: none;
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 12px;
+            border-radius: 10px;
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .success {
+            color: #2e7d32;
+            background-color: #e8f5e9;
+        }
+        .error {
+            color: #c62828;
+            background-color: #ffebee;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="emoji" id="icon">🥺</div>
+        <h2>I am Sorry,<br>mujhe maaf krdo!</h2>
+        
+        <form id="sorryForm">
+            <input type="text" id="userInput" placeholder="Type your answer..." required autocomplete="off">
+            <button type="submit">Submit ❤️</button>
+        </form>
+
+        <div id="responseMessage" class="message-box"></div>
+    </div>
+
+    <script>
+        document.getElementById('sorryForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const inputVal = document.getElementById('userInput').value.trim().toLowerCase();
+            const messageBox = document.getElementById('responseMessage');
+            const icon = document.getElementById('icon');
+
+            // Accepted positive responses
+            const positiveAnswers = ['thik he', 'thik hai', 'ok', 'yes', 'haa', 'ha', 'maaf kiya', 'fine'];
+
+            messageBox.style.display = 'block';
+
+            if (positiveAnswers.includes(inputVal)) {
+                messageBox.textContent = "Thank You! ❤️✨";
+                messageBox.className = "message-box success";
+                icon.textContent = "🥰";
+            } else {
+                messageBox.textContent = "Plz forgive me! 🥺🙏";
+                messageBox.className = "message-box error";
+                icon.textContent = "😭";
+            }
+        });
+    </script>
+
+</body>
+</html>
